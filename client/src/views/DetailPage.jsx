@@ -5,15 +5,22 @@ import Label from "@material-tailwind/react/Label";
 
 import AboutPokemon from "../components/AboutPokemon";
 import StatsPokemon from "../components/StatsPokemon";
+import MovesPokemon from "../components/MovesPokemon";
+import EvolutionPokemon from "../components/EvolutionPokemon";
 
 export default function DetailPage() {
   const { id } = useParams();
 
   const [color, setColor] = useState("");
   const [species, setSpecies] = useState("");
-  const [showStats, setShowStats] = useState(false);
-  const [showAbout, setShowAbout] = useState(true);
+  const [evolutionUrl, setEvolutionUrl] = useState("");
+
   const [pokemon, setPokemon] = useState({});
+
+  const [showAbout, setShowAbout] = useState(true);
+  const [showMoves, setShowMoves] = useState(false);
+  const [showStats, setShowStats] = useState(false);
+  const [showEvolution, setShowEvolution] = useState(false);
 
   useEffect(() => {
     fetchPokemon(id);
@@ -22,6 +29,8 @@ export default function DetailPage() {
   useEffect(() => {
     fetchSpeciesPokemon(pokemon?.species?.url);
   }, [pokemon?.species?.url]);
+
+  //   console.log(pokemon.species.url);
 
   useEffect(() => {
     fetchColorPokemon(species?.color?.url);
@@ -43,6 +52,8 @@ export default function DetailPage() {
       const response = await fetch(url);
       const pokemonData = await response.json();
 
+      //   console.log(pokemonData, `INI DI SPECIES`);
+      setEvolutionUrl(pokemonData?.evolution_chain?.url);
       setSpecies(pokemonData);
     } catch (err) {
       console.log(err);
@@ -64,6 +75,30 @@ export default function DetailPage() {
     try {
       setShowStats(false);
       setShowAbout(true);
+      setShowMoves(false);
+      setShowEvolution(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function seeMoves() {
+    try {
+      setShowStats(false);
+      setShowAbout(false);
+      setShowMoves(true);
+      setShowEvolution(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function seeEvolution() {
+    try {
+      setShowStats(false);
+      setShowAbout(false);
+      setShowMoves(false);
+      setShowEvolution(true);
     } catch (err) {
       console.log(err);
     }
@@ -73,17 +108,20 @@ export default function DetailPage() {
     try {
       setShowAbout(false);
       setShowStats(true);
+      setShowMoves(false);
+      setShowEvolution(false);
     } catch (err) {
       console.log(err);
     }
   }
 
+  //   console.log(color);
   //   console.log(pokemon?.sprites?.other["official-artwork"].front_default);
 
   return (
     <>
       <div
-        className={`border-2 rounded-2xl mx-12 my-12 ${
+        className={`border-2 rounded-2xl sm:mx-4 sm:my-4 lg:mx-12 lg:my-12 ${
           color.name === "green"
             ? "bg-green-300"
             : color.name === "red"
@@ -153,7 +191,7 @@ export default function DetailPage() {
             alt="pokemon"
           />
         </div>
-        <div className="w-full h-1/2 rounded-t-2xl flex mt-8 pt-10 flex-row border-2 bg-white justify-evenly items-center z-50">
+        <div className="rounded-t-2xl flex mt-8 pt-10 border-2 bg-white justify-evenly items-center">
           <button
             onClick={() => seeAbout()}
             className="btn btn-link text-black"
@@ -166,12 +204,26 @@ export default function DetailPage() {
           >
             Stats
           </button>
-          <button className="btn btn-link text-black">link</button>
-          <button className="btn btn-link text-black">link</button>
+          <button
+            onClick={() => seeEvolution()}
+            className="btn btn-link text-black"
+          >
+            Evolution
+          </button>
+          <button
+            onClick={() => seeMoves()}
+            className="btn btn-link text-black"
+          >
+            Moves
+          </button>
         </div>
         <div className="bg-white">
           {showAbout ? <AboutPokemon data={pokemon} /> : null}
-          {showStats ? <StatsPokemon data={pokemon.stats} /> : null}
+          {showStats ? <StatsPokemon data={pokemon?.stats} /> : null}
+          {showEvolution ? (
+            <EvolutionPokemon url={evolutionUrl} currentName={pokemon?.name} />
+          ) : null}
+          {showMoves ? <MovesPokemon /> : null}
         </div>
       </div>
     </>

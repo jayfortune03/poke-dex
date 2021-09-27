@@ -54,7 +54,7 @@ export default function Card({ data }) {
   }
 
   return (
-    <Link to={`/pokemon/${pokemon.id}`}>
+    <Link to={`/pokemon/${pokemon?.id}`}>
       <div
         className={`card shadow-lg hover:grow hover:shadow-lg ${
           color.name === "green"

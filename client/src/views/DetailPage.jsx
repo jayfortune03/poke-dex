@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import Label from "@material-tailwind/react/Label";
+
 export default function DetailPage() {
   return (
     <div className="hero min-h-screen bg-base-200">

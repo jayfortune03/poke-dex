@@ -14,7 +14,7 @@ export default function HomePage() {
   }, [dispatch]);
 
   return (
-    <div className="mx-12 my-12 h-auto w-auto gap-16 grid md:grid-cols-2 sm:grid-cols-1 xl:grid-cols-6 2xl:grid-cols-8 lg:grid-cols-4">
+    <div className="mx-12 my-12 h-auto w-auto gap-16 grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4">
       {pokemons?.results?.map((el) => {
         return <Card key={el.count} data={el} />;
       })}

@@ -72,18 +72,18 @@ export default function Card({ data }) {
             : color.name === "purple"
             ? "bg-purple-300"
             : color.name === "white"
-            ? "bg-gray-400"
+            ? "bg-gray-300"
             : color.name === "yellow"
             ? "bg-yellow-300"
             : ""
         } text-accent-content`}
       >
-        <div className="flex ml-4 mt-8">
-          <h2 className="card-title xl:text-2xl md:text:3-xl">
+        <div className="flex ml-4 mt-8 ">
+          <h2 className="card-title lg:text-4xl">
             {capitalizeFirstLetter(data.name)}
           </h2>
         </div>
-        <div className="flex xl:mt-2 xl:my:2 lg:mt-6 lg:ml-6">
+        <div className="flex mt-4 ml-6">
           {pokemon?.types?.map((el) => {
             return (
               <Label
@@ -113,11 +113,7 @@ export default function Card({ data }) {
           })}
         </div>
         <div className="card-body flex">
-          <img
-            className="lg:ml-35 xl:ml-12 md:ml-20 sm:ml-40"
-            src={pokemon?.sprites?.front_default}
-            alt="pokemon"
-          />
+          <img src={pokemon?.sprites?.front_default} alt="pokemon" />
         </div>
       </div>
     </Link>

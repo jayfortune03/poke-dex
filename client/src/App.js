@@ -1,11 +1,20 @@
-import Card from "./components/Card";
 import "./App.css";
+
+import { Route, Switch } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import HomePage from "./views/HomePage";
 
 function App() {
   return (
-    <div className="mx-96 my-96">
-      <Card />
-    </div>
+    <>
+      <Navbar />
+      <Switch>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

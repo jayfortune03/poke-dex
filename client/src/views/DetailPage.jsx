@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 
 import Label from "@material-tailwind/react/Label";
 
+import AboutPokemon from "../components/AboutPokemon";
+
 export default function DetailPage() {
   const { id } = useParams();
 
   const [color, setColor] = useState("");
   const [species, setSpecies] = useState("");
   const [pokemon, setPokemon] = useState({});
-
-  console.log(pokemon);
 
   useEffect(() => {
     fetchPokemon(id);
@@ -60,9 +60,9 @@ export default function DetailPage() {
   //   console.log(pokemon?.sprites?.other["official-artwork"].front_default);
 
   return (
-    <div className={`hero min-h-screen`}>
+    <>
       <div
-        className={`border-2 ${
+        className={`border-2 rounded-2xl mx-12 my-12 ${
           color.name === "green"
             ? "bg-green-300"
             : color.name === "red"
@@ -80,25 +80,68 @@ export default function DetailPage() {
             : ""
         }`}
       >
-        <div className="flex-col hero-content lg:flex-row-reverse">
+        {pokemon?.id > 9 ? (
+          <div className="flex ml-6 mt-8 opacity-50 text-3xl">
+            #0{pokemon?.id}
+          </div>
+        ) : (
+          <div className="flex ml-6 mt-8 opacity-50 text-3xl">
+            #00{pokemon?.id}
+          </div>
+        )}
+
+        <h1 className="mb-5 text-5xl ml-6 mt-4 text-transform: capitalize font-bold">
+          {pokemon?.name}
+        </h1>
+
+        <div className="flex mt-4 ml-6">
+          {pokemon?.types?.map((el) => {
+            return (
+              <Label
+                color={
+                  el.type.name === "water"
+                    ? "blue"
+                    : el.type.name === "fire"
+                    ? "red"
+                    : el.type.name === "grass"
+                    ? "green"
+                    : el.type.name === "ice"
+                    ? "lightBlue"
+                    : el.type.name === "poison"
+                    ? "purple"
+                    : el.type.name === "flying"
+                    ? "indigo"
+                    : el.type.name === "normal"
+                    ? "gray"
+                    : el.type.name === "bug"
+                    ? "yellow"
+                    : ""
+                }
+              >
+                {el.type.name}
+              </Label>
+            );
+          })}
+        </div>
+        <div className="flex w-full mt-24 mb-10 justify-center items-center">
           <img
             src={pokemon?.sprites?.other["official-artwork"].front_default}
-            className="shadow-2xl rounded-2xl bg-green-100"
+            className="absolute object-cover hover:grow transition-all transform duration-500 mx-auto rounded-2xl"
+            width="200"
+            height="200"
             alt="pokemon"
           />
-          <div>
-            <h1 className="mb-5 text-5xl text-transform: capitalize font-bold">
-              {pokemon?.name}
-            </h1>
-            <h2 className="mb-5">Ability</h2>
-            {pokemon?.abilities?.map((el) => {
-              console.log(el);
-              return <div class="badge badge-lg">{el.ability.name}</div>;
-            })}
-            <button className="btn btn-primary">Get Started</button>
-          </div>
+        </div>
+        <div className="w-full h-1/2 rounded-t-2xl flex mt-8 pt-10 flex-row border-2 bg-white justify-evenly items-center z-50">
+          <button className="btn btn-link text-black">link</button>
+          <button className="btn btn-link text-black">link</button>
+          <button className="btn btn-link text-black">link</button>
+          <button className="btn btn-link text-black">link</button>
+        </div>
+        <div className="bg-white">
+          <AboutPokemon />
         </div>
       </div>
-    </div>
+    </>
   );
 }

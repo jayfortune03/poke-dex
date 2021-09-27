@@ -19,13 +19,15 @@ export default function EvolutionPokemon({ url: evolutionUrl, currentName }) {
     }
   }
 
+  console.log(evolution, `INI EVO`);
+
   return (
     <div className="overflow-x-auto pt-12 flex ">
       <table className="table w-full text-center">
         <tr>
-          <td className="opacity-70 font-bold">Name</td>
+          <td className="opacity-70 font-bold">Species</td>
           <td className="font-light text-transform: capitalize">
-            {currentName}
+            {evolution?.species?.name}
           </td>
         </tr>
         {evolution?.evolves_to?.map((el) => {

@@ -6,12 +6,12 @@ export default function StatsPokemon({ data }) {
           return (
             <tr>
               <td className="opacity-70 text-transform: capitalize font-bold">
-                {el.stat.name} :
+                {el.stat.name}
               </td>
               <td className="font-light text-lg">
                 {el.base_stat}
 
-                <div className="h-2 mb-4 w-full text-xs flex rounded bg-gray-300">
+                <div className="h-2 mb-4 w-full mr-36 text-xs flex rounded bg-gray-300">
                   <div
                     style={{ width: `${el.base_stat}%` }}
                     className={`shadow-none text-center whitespace-nowrap text-white justify-center ${

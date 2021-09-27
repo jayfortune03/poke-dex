@@ -4,12 +4,15 @@ import { useParams } from "react-router-dom";
 import Label from "@material-tailwind/react/Label";
 
 import AboutPokemon from "../components/AboutPokemon";
+import StatsPokemon from "../components/StatsPokemon";
 
 export default function DetailPage() {
   const { id } = useParams();
 
   const [color, setColor] = useState("");
   const [species, setSpecies] = useState("");
+  const [showStats, setShowStats] = useState(false);
+  const [showAbout, setShowAbout] = useState(true);
   const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {
@@ -52,6 +55,24 @@ export default function DetailPage() {
       const pokemonData = await response.json();
 
       setPokemon(pokemonData);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function seeAbout() {
+    try {
+      setShowStats(false);
+      setShowAbout(true);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function seeStats() {
+    try {
+      setShowAbout(false);
+      setShowStats(true);
     } catch (err) {
       console.log(err);
     }
@@ -133,13 +154,24 @@ export default function DetailPage() {
           />
         </div>
         <div className="w-full h-1/2 rounded-t-2xl flex mt-8 pt-10 flex-row border-2 bg-white justify-evenly items-center z-50">
-          <button className="btn btn-link text-black">About</button>
-          <button className="btn btn-link text-black">link</button>
+          <button
+            onClick={() => seeAbout()}
+            className="btn btn-link text-black"
+          >
+            About
+          </button>
+          <button
+            onClick={() => seeStats()}
+            className="btn btn-link text-black"
+          >
+            Stats
+          </button>
           <button className="btn btn-link text-black">link</button>
           <button className="btn btn-link text-black">link</button>
         </div>
         <div className="bg-white">
-          <AboutPokemon data={pokemon} />
+          {showAbout ? <AboutPokemon data={pokemon} /> : null}
+          {showStats ? <StatsPokemon data={pokemon.stats} /> : null}
         </div>
       </div>
     </>

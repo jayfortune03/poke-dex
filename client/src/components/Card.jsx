@@ -74,7 +74,17 @@ export default function Card({ data }) {
             : ""
         } text-accent-content`}
       >
-        <div className="flex ml-4 mt-8 text-transform: capitalize">
+        {pokemon?.id > 9 ? (
+          <div className="flex ml-6 mt-8 opacity-80 text-3xl">
+            #0{pokemon?.id}
+          </div>
+        ) : (
+          <div className="flex ml-6 mt-8 opacity-80 text-3xl">
+            #00{pokemon?.id}
+          </div>
+        )}
+
+        <div className="flex ml-6 mt-8 text-transform: capitalize">
           <h2 className="card-title lg:text-4xl">{data.name}</h2>
         </div>
         <div className="flex mt-4 ml-6">
@@ -113,5 +123,3 @@ export default function Card({ data }) {
     </Link>
   );
 }
-
-// Normal, Fire, Water, Grass, Flying, Fighting, Poison, Electric, Ground, Rock, Psychic, Ice, Bug, Ghost, Steel, Dragon, Dark and Fairy

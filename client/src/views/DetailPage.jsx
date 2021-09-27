@@ -10,6 +10,8 @@ export default function DetailPage() {
   const [species, setSpecies] = useState("");
   const [pokemon, setPokemon] = useState({});
 
+  console.log(pokemon);
+
   useEffect(() => {
     fetchPokemon(id);
   }, [id]);
@@ -88,11 +90,11 @@ export default function DetailPage() {
             <h1 className="mb-5 text-5xl text-transform: capitalize font-bold">
               {pokemon?.name}
             </h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+            <h2 className="mb-5">Ability</h2>
+            {pokemon?.abilities?.map((el) => {
+              console.log(el);
+              return <div class="badge badge-lg">{el.ability.name}</div>;
+            })}
             <button className="btn btn-primary">Get Started</button>
           </div>
         </div>

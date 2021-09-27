@@ -53,10 +53,6 @@ export default function Card({ data }) {
     }
   }
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
   return (
     <Link to={`/pokemon/${pokemon.id}`}>
       <div
@@ -78,10 +74,8 @@ export default function Card({ data }) {
             : ""
         } text-accent-content`}
       >
-        <div className="flex ml-4 mt-8 ">
-          <h2 className="card-title lg:text-4xl">
-            {capitalizeFirstLetter(data.name)}
-          </h2>
+        <div className="flex ml-4 mt-8 text-transform: capitalize">
+          <h2 className="card-title lg:text-4xl">{data.name}</h2>
         </div>
         <div className="flex mt-4 ml-6">
           {pokemon?.types?.map((el) => {

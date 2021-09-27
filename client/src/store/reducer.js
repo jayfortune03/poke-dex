@@ -1,7 +1,8 @@
-import { FETCH_POKEMONS } from "./actionType";
+import { FETCH_POKEMONS, FETCH_POKEMON } from "./actionType";
 
 const initialState = {
   pokemons: [],
+  pokenon: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -11,7 +12,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         pokemons: action.payload,
       };
-
+    case FETCH_POKEMON:
+      return {
+        ...state,
+        pokemon: action.payload,
+      };
     default:
       return state;
   }

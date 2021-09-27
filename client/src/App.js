@@ -1,26 +1,20 @@
 import "./App.css";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 
-import Card from "./components/Card";
-
-import { fetchPokemons } from "./store/action";
+import Navbar from "./components/Navbar";
+import HomePage from "./views/HomePage";
 
 function App() {
-  const dispatch = useDispatch();
-  const pokemons = useSelector((state) => state.pokemons);
-
-  useEffect(() => {
-    dispatch(fetchPokemons());
-  }, [dispatch]);
-
-  console.log(pokemons);
-
   return (
-    <div className="mx-96 my-96">
-      <Card />
-    </div>
+    <>
+      <Navbar />
+      <Switch>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

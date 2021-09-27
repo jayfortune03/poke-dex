@@ -1,6 +1,6 @@
 export default function Card() {
   return (
-    <div className="card shadow-sm bg-accent text-accent-content">
+    <div className="card shadow-lg bg-accent text-accent-content">
       <figure>
         <img src="https://picsum.photos/id/1005/400/250" alt="pokemon" />
       </figure>

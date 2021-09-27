@@ -85,7 +85,9 @@ export default function Card({ data }) {
         )}
 
         <div className="flex ml-6 mt-8 text-transform: capitalize">
-          <h2 className="card-title lg:text-4xl">{data.name}</h2>
+          <h2 className="card-title sm:text-xl md:text-2xl lg:text-3xl">
+            {data.name}
+          </h2>
         </div>
         <div className="flex mt-4 ml-6">
           {pokemon?.types?.map((el) => {

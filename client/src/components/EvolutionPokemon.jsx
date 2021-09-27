@@ -5,7 +5,7 @@ export default function EvolutionPokemon({ url: evolutionUrl, currentName }) {
 
   useEffect(() => {
     fetchEvolution(evolutionUrl);
-  }, []);
+  }, [evolutionUrl]);
 
   async function fetchEvolution(url) {
     try {
@@ -19,26 +19,20 @@ export default function EvolutionPokemon({ url: evolutionUrl, currentName }) {
     }
   }
 
-  //   console.log(evolution?.species?.name, currentName, `NIH BANDING`);
-
-  console.log(evolution);
-
   return (
-    <div class="overflow-x-auto pt-12 flex ">
-      <table class="table w-full text-center">
+    <div className="overflow-x-auto pt-12 flex ">
+      <table className="table w-full text-center">
         <tr>
-          <td className="opacity-70 font-bold">Name : </td>
+          <td className="opacity-70 font-bold">Name</td>
           <td className="font-light text-transform: capitalize">
             {currentName}
           </td>
         </tr>
         {evolution?.evolves_to?.map((el) => {
-          console.log(el, `INI LOOPING`);
-          // console.log(el.species.name, currentName, `INI BANDINGAN`);
           return (
             <>
               <tr key={el.species.name}>
-                <td className="opacity-70 font-bold">Evolution 1 : </td>
+                <td className="opacity-70 font-bold">Evolution 1</td>
                 <td className="font-light text-transform: capitalize">
                   {el.species.name}
                 </td>
@@ -46,7 +40,7 @@ export default function EvolutionPokemon({ url: evolutionUrl, currentName }) {
               {el.evolves_to.map((evo) => {
                 return (
                   <tr key={evo.species.name}>
-                    <td className="opacity-70 font-bold">Evolution 2 : </td>
+                    <td className="opacity-70 font-bold">Evolution 2</td>
                     <td className="font-light text-transform: capitalize">
                       {evo.species.name}
                     </td>

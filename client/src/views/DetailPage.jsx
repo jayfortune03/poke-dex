@@ -133,13 +133,13 @@ export default function DetailPage() {
           />
         </div>
         <div className="w-full h-1/2 rounded-t-2xl flex mt-8 pt-10 flex-row border-2 bg-white justify-evenly items-center z-50">
-          <button className="btn btn-link text-black">link</button>
+          <button className="btn btn-link text-black">About</button>
           <button className="btn btn-link text-black">link</button>
           <button className="btn btn-link text-black">link</button>
           <button className="btn btn-link text-black">link</button>
         </div>
         <div className="bg-white">
-          <AboutPokemon />
+          <AboutPokemon data={pokemon} />
         </div>
       </div>
     </>

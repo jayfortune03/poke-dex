@@ -1,5 +1,6 @@
 export default function useConvertHeight(height) {
-  const toCentimeter = height * 0.1;
+  const toCentimeter = height * 10;
+  const toMeter = height / 10;
 
-  return toCentimeter.toString().slice(0, 3) + " cm";
+  return `${toCentimeter} cm (${toMeter} m)`;
 }
